@@ -1,0 +1,63 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+   
+    <section class="content-header">
+            <h1>Ajouter le hotel</h1>
+     </section >
+<br>
+   {{ form_start(form)}}
+
+   <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Nouvelle addition</h3>
+            </div>
+
+ <form class="form-horizontal" method="post">
+<br> 
+
+<div class="box-body">
+
+<div class="row" >
+    <div class="col-md-5">   {{ form_row(form.nomhotel)}} </div>
+    <div class="col-md-5">   {{ form_row(form.adresse)}} </div>
+    <div class="col-md-5">{{ form_row(form.occupation)}} </div>
+    <div class="col-md-5">{{ form_row(form.service)}} </div>
+ 
+</div>
+  
+
+<div class="row">
+      <div class="col-md-2">{{ form_row(form.destination)}}</div>
+      <div class="col-md-2">{{ form_row(form.price)}}</div>
+      <div class="col-md-2">{{ form_row(form.avis)}} </div>
+</div>
+
+<div class="row">
+       <div class="col-md-10">{{ form_row(form.pension)}} </div>
+      <div class="col-md-10">{{ form_row(form.description)}} </div>
+      <div class="col-md-10">{{ form_row(form.hebergement)}} </div>
+      <div class="col-md-10">{{ form_row(form.restauration)}} </div>
+      <div class="col-md-10">{{ form_row(form.diveservice)}} </div>
+ 
+
+</div>
+ </div> 
+
+   <button class="btn btn-primary center-block">Ajouter</button>
+   {{ form_end(form)}}
+</form>
+
+{% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+  
+
+</div>
+ {% endblock %}
+
+

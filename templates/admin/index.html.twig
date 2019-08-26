@@ -1,0 +1,67 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Admin template{% endblock %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+     <!-- Content Header (Page header) -->
+      
+<div class="content-wrapper">
+     
+        <!-- /.box-header -->
+      
+             <section class="content-header">
+      
+             <h1>Gérer les utilisateur </h1>
+             {% for message in app.flashes('success') %}
+             <div class="alert alert-success">
+                 {{ message }}
+             </div>
+                {% endfor %}
+           <table class="table table-striped">
+               <thead>
+                   <tr>
+                      <th>Email</th>
+                      <th>Username</th>
+                      <th >Password</th>
+                   </tr>
+               </thead>
+      
+                <tbody>
+                {% for user in user %}
+                   <tr>
+                      <td>{{ user.Email }}</td>
+                      <td>{{ user.Email }}</td>
+                      <td >{{ user.Password }}</td>  
+
+                      <td >  <a  href="{{ path('admin_user_new', {id: user.id}) }}" class="btn btn-block btn-primary">  Modifier </a></td>     
+                       
+
+                      <td >  <a  href="{{ path('admin_user_delete', {id: user.id}) }}" class="btn btn-block btn-primary">  Supprimer </a></td>     
+ 
+                   </tr>
+                 {% endfor %}
+               </tbody>
+              </table>
+           </table>
+
+
+
+      <div class="text-right">
+         <a href="{{ path('admin_user_new')}}" class="btn btn-primary">Créer un nouveau utilisateur </a>
+      </div>
+           </section>
+         </div>
+
+
+
+
+
+
+
+
+ </div>
+  <!-- /.content-wrapper -->
+
+{% endblock %}

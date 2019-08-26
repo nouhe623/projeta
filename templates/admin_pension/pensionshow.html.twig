@@ -1,0 +1,49 @@
+{% extends 'adminbase.html.twig' %}
+
+
+{% block title 'Gérer les hôtel' %}
+
+
+{% block content %}
+   <div class="content-wrapper  ">
+      <section class="content-header">
+
+       <h1>Gérer les pensions </h1>
+       {% for message in app.flashes('success') %}
+       <div class="alert alert-success">
+           {{ message }}
+       </div>
+   {% endfor %}
+     <table class="table table-striped">
+         <thead>
+             <tr>
+                 <th>Pensions</th>
+                 <th>Actions</th>
+             </tr>
+         </thead>
+
+          <tbody>
+          {% for pension in pension %}
+             <tr>
+                 <td>{{ pension.pension }}</td>
+                 
+                 <td> 
+                  <a href="{{ path('pension_add', {id: pension.id}) }}" class="btn btn-block btn-primary"> Editer  </a>
+                 </td>
+                 <td> 
+                   <a href="{{ path('pension_add', {id: pension.id}) }}" class="btn btn-block btn-primary"> Delete  </a>
+                 </td>
+             </tr>
+           {% endfor %}
+         </tbody>
+
+     </table>
+<div class="text-right">
+   <a href="{{ path('pension_add')}}" class="btn btn-primary">Créer un nouveau pension </a>
+</div>
+     </section>
+    
+   </div>
+ 
+
+{% endblock %}

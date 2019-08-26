@@ -1,0 +1,80 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Hello FrontController!{% endblock %}
+
+ 
+ {% block body %}
+  
+
+
+ <!-- ##### Hero Area Start ##### -->
+ <div class="hero-area">
+        <br> <h1>TOP PROMO VACANCES ÉTÉ 2019 </h1><br>
+    <!-- Hero Post Slides -->
+    <div class="hero-post-slides owl-carousel">
+        <!-- Single Slide -->
+      {% for hotel in hotel %}
+        <div class="single-slide">
+            <!-- Blog Thumbnail -->
+            <div class="blog-thumbnail">
+                <a href="#"><img src="{{ asset('front') }}/img/bg-img/1a.jpg" alt=""></a>
+            </div>
+
+            <!-- Blog Content -->
+            <div class="blog-content-bg">
+                <div class="blog-content">
+                    <a href="#" class="post-tag">{{ hotel.destination }}</a>
+                    <a href="{{ path ('hotel.show', { id: hotel.id, slug: hotel.slug })}}" class="post-title"> {{ hotel.nomhotel }}</a>
+                    <div class="post-meta">
+                         <a href="#" class="post-author">Promo Jul {{ hotel.price }}DT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        
+    </div>
+ </div>
+
+
+
+ <br> <br><br>
+ <div class="post-catagory section-padding-100">
+        <br> <h1>PROMO HÔTELS JUSQU'À -40%
+            </h1><br>
+
+        {% for hotel in hotel %}
+    <div class="container">
+            <div class="row">
+                <!-- Single Post Catagory -->
+               
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-50">
+                        <img src="{{ asset('front') }}/img/bg-img/1a.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" class="post-tag">{{ hotel.destination }}</a>
+                                <a href="{{ path ('hotel.show', { id: hotel.id, slug: hotel.slug })}}" class="post-title"> {{ hotel.nomhotel }}</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-author">Promo Jul {{ hotel.price }}DT</a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+            {% endfor %}
+ 
+        </div>
+    </div>
+
+{% endblock %}
+ 

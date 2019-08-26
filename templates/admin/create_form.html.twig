@@ -1,0 +1,81 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Créer un nouveau compte utilisateur {% endblock %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+          Ajouter admin 
+          <small><a href="{{ path('admin') }}" class="btn btn-block btn-primary"> La liste des utilisateurs 
+            </a> </small>     
+      </h1> 
+      {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+   
+    </section class="content">
+
+
+    {{ form_start(form)}}
+
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Nouvelle addition</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form class="form-horizontal" method="post">
+
+          {{ form_start(form)}}
+
+        <div class="box-body">
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">username</label>
+    
+                <div class="col-md-10">{{ form_row(form.username)}} </div>
+
+              </div>
+
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+            <div class="col-md-10">{{ form_row(form.email)}} </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+            <div class="col-md-10">{{ form_row(form.password)}} </div>
+
+          </div>
+           
+          
+
+        </div> 
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button class="btn btn-primary center-block">Ajouter</button>
+        </div>
+        <!-- /.box-footer -->
+
+ 
+        {{ form_end(form)}}
+      </form>
+    </div>
+    
+  
+    </section> 
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+   
+    <section class="content-header">
+            <h1>Ajouter pension</h1>
+            {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+     </section >
+<br>
+   {{ form_start(form)}}
+
+   <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Nouvelle addition</h3>
+            </div>
+
+ <form class="form-horizontal" method="post">
+<br> 
+
+<div class="box-body">
+
+<div class="row" >
+    <div class="col-md-5">   {{ form_row(form.pension)}} </div>
+     
+</div>
+  
+ </div> 
+
+   <button class="btn btn-primary center-block">Ajouter</button><br><br>
+   {{ form_end(form)}} 
+
+</form>
+ 
+ 
+
+ 
+
+</div>
+ {% endblock %}
+
+
