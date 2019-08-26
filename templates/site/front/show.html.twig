@@ -19,20 +19,10 @@
                   
 
        <div class="col-12 col-md-6"> 
-          {% for message in app.flashes('success') %}
-          <div class="alert alert-success">
-              {{ message }}
-          </div>
-      {% endfor %}
+          
   
    
-
-     {{ form_start(form) }}
-      
-
  
-    {{ form_end(form) }}
-
         
 
             <div class="big-post-content text-center mb-50" >  
@@ -71,7 +61,7 @@
 
 
                                         <li><img src="{{ asset('front') }}/img/core-img/tray.png" alt=""><center> <span   style="color: rgb(255, 255, 255)" >Chambres </span> </center>  </li>
-                                        <li><img src="{{ asset('front') }}/img/core-img/sandwich.png" alt=""><center> <span  style="color: rgb(255, 255, 255)" >Pensions   </span> </center>   <center><span style="color: rgb(0, 0, 0) " > {{ hotel.pension  }} </span> </center>  </li>
+                                        <li><img src="{{ asset('front') }}/img/core-img/sandwich.png" alt=""><center> <span  style="color: rgb(255, 255, 255)" >Pensions   </span> </center>   <center><span style="color: rgb(0, 0, 0) " > </span> </center>  </li>
                                         <li><img src="{{ asset('front') }}/img/core-img/compass.png" alt=""> <center><span  style="color: rgb(255, 255, 255)" >A partir de   </span>  </center>  <center> <span style="color: rgb(0, 0, 0) " ><font size="6">  {{ hotel.price  }} DT </font> </span> </center>  </li>
                                     </ul>
                          </div>
@@ -125,23 +115,7 @@
 
 <script>
    
-
-    function calculateAmount() {
-        // On chope les dates
  
-
-        if(startDate && endDate && startDate < endDate){
-            const DAY_TIME  = 24 * 60 * 60 * 1000;
-
-            const interval  = endDate.getTime() - startDate.getTime();
-            const days      = interval / DAY_TIME;
-            const nombre    = days * Hotel.price ;
-
-            $('#days').text(days);
-            $('#nombre').text(nombre.toLocaleString('fr-FR'));
-        }
-    }
-
 </script>
 
 {% endblock %}

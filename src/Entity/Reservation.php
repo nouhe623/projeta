@@ -19,21 +19,7 @@ class Reservation
      */
     private $id;
 
-    /**
-     * @ORM\JoinColumn(nullable=false)
-     */
-     private $reserver;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="reserver")
-     * @ORM\JoinColumn(nullable=true)
-    */
-     private $hotel;
-
-
-
-     
+   
 
 
 
@@ -104,51 +90,7 @@ class Reservation
 
 
 
-    /**
-     * Callback appelé à chaque fois qu'on créé une réservation
-     *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     * 
-     * @return void
-     */
-     public function prePersist() {
-        if(empty($this->createdAt)) {
-            $this->createdAt = new \DateTime();
-        }
-
-        if(empty($this->nombre)) {
-            // prix de l'annonce * nombre de jour
-            $this->nombre = $this->hotel->getPrice() * $this->getDuration();
-        }
-    }
-
-    /**
-     * Permet de savoir si les dates réservées sont disponibles ou non
-     *
-     * @return boolean 
-     */
-    public function isBookableDates() {
-        // 1) Il faut connaitre les dates qui sont impossibles pour l'annonce
-        $notAvailableDays = $this->hotel->getNotAvailableDays();
-        // 2) Il faut comparer les dates choisies avec les dates impossibles
-        $reserverDays      = $this->getDays();
-
-        $formatDay = function($day){
-            return $day->format('Y-m-d');
-        };
-
-        // Tableau des chaines de caractères de mes journées
-        $days           = array_map($formatDay, $reserverDays);
-        $notAvailable   = array_map($formatDay, $notAvailableDays);
-
-        foreach($days as $day) {
-            if(array_search($day, $notAvailable) !== false) return false;
-        }
-
-        return true;
-    }
-
+     
    /**
      * Permet de récupérer un tableau des journées qui correspondent à ma réservation
      *
@@ -226,17 +168,6 @@ class Reservation
         return $this;
     }
 
-    public function getHotel(): ?string
-    {
-        return $this->hotel;
-    }
-
-    public function setHotel(?Hotel $hotel): self
-    {
-        $this->hotel = $hotel;
-
-        return $this;
-    }
     
     public function getNombre(): ?int
     {

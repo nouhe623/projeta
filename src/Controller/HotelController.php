@@ -18,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HotelController extends AbstractController
 {
-   
     
       
     /**
@@ -29,14 +28,11 @@ class HotelController extends AbstractController
         $reserver = new Reservation();
 
 
-          $form = $this-> createForm(ReservationType::class, $reserver);
-         $form->handleRequest($request);
- 
+  
 
            return $this->render('site/front/show.html.twig',[
-              'hotel' => $hotel,
-              'form' => $form->createView()
-
+              'hotel' => $hotel 
+ 
           ]);
     }
   

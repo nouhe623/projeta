@@ -33,8 +33,7 @@ class Hotel
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=5, max=255, minMessage=" nom hotel doit faire plus de 5 caractères !", maxMessage=" nom hotel ne peut pas faire plus de 255 caractères")
-     */
+      */
     private $nomhotel;
 
     /**
@@ -55,12 +54,9 @@ class Hotel
      */
     private $service;
 
+    
 
-   /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="hotel")
-     */
-     private $reserver;
-
+   
   
     /**
      * @ORM\OneToOne(targetEntity="Pension",cascade={"persist"})  
@@ -70,19 +66,16 @@ class Hotel
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10, minMessage="Votre description doit faire plus de 10 caractères")
      */
     private $description;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10, minMessage="Votre hebergement doit faire plus de 10 caractères")
      */
     private $hebergement;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10, minMessage="Votre restauration doit faire plus de 10 caractères")
      */
     private $restauration;
 
@@ -90,7 +83,6 @@ class Hotel
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10, minMessage="Votre diveservice doit faire plus de 10 caractères")
      */
     private $diveservice;
 
@@ -126,12 +118,10 @@ class Hotel
         return $this;
     }
 
-    public function __toString() {
-        return $this->pension;
-    }
-  
 
-    /**
+ 
+    
+   /**
      * Permet d'initialiser le slug !
      *
      * @ORM\PrePersist
@@ -145,27 +135,7 @@ class Hotel
             $this->slug = $slugify->slugify($this->nomhotel);
         }
     }
-
-    public function getNotAvailableDays() {
-        $notAvailableDays = [];
-
-        foreach($this->reserver as $reserver) {
-            // Calculer les jours qui se trouvent entre la date d'arrivée et de départ
-            $resultat = range(
-                $reserver->getStartDate()->getTimestamp(), 
-                $reserver->getEndDate()->getTimestamp(), 
-                24 * 60 * 60
-            );
-            
-            $days = array_map(function($dayTimestamp){
-                return new \DateTime(date('Y-m-d', $dayTimestamp));
-            }, $resultat);
-
-            $notAvailableDays = array_merge($notAvailableDays, $days);
-        }
-
-        return $notAvailableDays;
-    }
+ 
  
   
 
@@ -325,39 +295,8 @@ class Hotel
     }
  
 
- 
-     
-   
-     /**
-     * @return Collection|Reservation[]
-     */
-     public function getReserver(): Collection
-     {
-         return $this->reserver;
-     }
- 
-     public function addReserver(Reserver $reserver): self
-     {
-         if (!$this->reserver->contains($reserver)) {
-              $this->reserver[] = $reserver;
-              $reserver->setAd($this);
-         }
- 
-         return $this;
-     }
- 
-     public function removeReserver(Reserver $reserver): self
-     {
-         if ($this->reserver->contains($reserver)) {
-             $this->reserver->removeElement($reserver);
-             // set the owning side to null (unless already changed)
-             if ($reserver->getAd() === $this) {
-                 $reserver->setAd(null);
-             }
-         }
-
-         return $this;
-     }
+      
+    
      public function getCreatedAt(): ?\DateTimeInterface
      {
          return $this->createdAt;

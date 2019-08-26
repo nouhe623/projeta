@@ -40,6 +40,9 @@ class HotelType extends AbstractType
     }
 
  
+    public function __toString() {
+        return $this->pension;
+    }
   
 
     private function getChoices()
